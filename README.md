@@ -1,4 +1,4 @@
-# apuntes_reactjs
+# APUNTES REACT JS
 
 Una breve introducción a REACT
 
@@ -90,15 +90,15 @@ Si se dan cuenta el archivo HTML no trae el `JS`, `create react app` se encarga 
 
 `index.js`
 
-```reactjs
+```js
 // el elemento a crear
-const element = document.createElement('h1');
+const element = document.createElement("h1");
 
 // Lo que queremos que aparezce dentro de nuestro elemento
-element.innerText = 'Hello world!';
+element.innerText = "Hello world!";
 
 // donde lo queremos añadir
-const container = document.getElementById('app')
+const container = document.getElementById("app");
 
 // añadimos dentro del contenedor el elemento
 container.appendChild(element);
@@ -112,18 +112,18 @@ Con las herramientas de desarrollo `react developers tools` se puede ver todo lo
 
 Usando el mismo `index.html`, solo modificamos el `index.js`
 
-```reactjs
+```js
 //importamos la librerias
 // este es el analogo al createElement, habilita el jsx
-import React from 'react';
+import React from "react";
 
 //este es el analogo al appendChild
-import ReactDom from 'react-dom'
+import ReactDom from "react-dom";
 
 // este es algo diferente (mas facil con jsx) al anterior ejemplo:
-const element = <h1>Hello world!</h1>
+const element = <h1>Hello world!</h1>;
 // este es diferente al ejemplo anterior:
-const container = document.getElementById('app');
+const container = document.getElementById("app");
 
 // En esta ya se ve el react con su metodo render, facilitando el ejemplo anterior del appendChild:
 // ReactDom.render(--que se renderizara--, donde se renderiazara--)
@@ -141,23 +141,131 @@ Las dos tienen poder y las misma capacidad.
 
 con React.createElement
 
-```reactjs
-import React from 'react';
-import ReactDOM from 'react-dom';
+```js
+import React from "react";
+import ReactDOM from "react-dom";
 
 // React.createElement('la etiqueta', {los atributos}, 'lo que va dentro')
-const element = React.createElement('h1', {}, 'Hola! Soy los children')
-const container = document.getElementById('app');
+const element = React.createElement("h1", {}, "Hola! Soy los children");
+const container = document.getElementById("app");
 ReactDOM.render(element, container);
 ```
 
 Un ejemplo con atributos:
 
-```reactjs
-import React from 'react';
-import ReactDOM from 'react-dom';
+```js
+import React from "react";
+import ReactDOM from "react-dom";
 // React.createElement('la etiqueta', {los atributos}, 'lo que va dentro')
-const element = React.createElement('a', {href: 'https://misterernest.com'}, 'Ir a misterernest.com');
-const container = document.getElementById('app');
+
+const element = React.createElement(
+  "a",
+  { href: "https://misterernest.com" },
+  "Ir a misterernest.com"
+);
+const container = document.getElementById("app");
 ReactDOM.render(element, container);
 ```
+
+Ahora un ejemplo, pero con variables, manejando `React.createElement`:
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+// React.createElement('la etiqueta', {los atributos}, 'lo que va dentro')
+const name = "misterernest";
+const element = React.createElement("h1", {}, `Hola soy ${name}`);
+const container = document.getElementById("app");
+ReactDOM.render(element, container);
+```
+
+La verdad no es complejo, pero que tal si es mas facil con `JSX`?
+Intentemoslo:
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+
+// variable
+const name = "misterernest";
+// jsx - mas sencillo aún, mas facil de recordar
+const jsx = <h1>hola soy {name}</h1>;
+
+const container = document.getElementById("app");
+//renderizamos
+ReactDOM.render(jsx, container);
+```
+
+La regla es mucho mas sencilla y con menos caracteres, es mas natural el `html`.
+
+Ademas dentro de las llaves puedes colocar la expresión que desees, y se imprimen, a menos que sean undefined.
+
+probemos otro ejemplo:
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+
+// variable
+const name = "misterernest";
+// jsx - mas sencillo aún, mas facil de recordar
+const jsx = (
+  <h1>
+    hola soy {name} y mi edad es : {15 + 12}
+  </h1>
+);
+
+const container = document.getElementById("app");
+//renderizamos
+ReactDOM.render(jsx, container);
+```
+
+Otro ejemplo mas complejo:
+
+_Primero con `React.createElement`_
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+// variable
+// jsx - mas sencillo aún, mas facil de recordar
+const name = "misterernest";
+const element = React.createElement(
+  "div",
+  {},
+  React.createElement("h1", {}, `hola soy ${name}`),
+  React.createElement("h4", {}, `hola soy ${name}`)
+);
+
+const container = document.getElementById("app");
+//renderizamos
+ReactDOM.render(element, container);
+```
+
+los anidamientos se vuelven mucho mas complejo...
+
+_Y ahora con `JSX`_
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+// variable
+// jsx - mas sencillo aún, mas facil de recordar
+const name = "misterernest";
+const jsx = (
+  <div>
+    <h1>hola soy {name}</h1>
+    <h4>y soy desarrollador front-end</h4>
+  </div>
+);
+
+const container = document.getElementById("app");
+//renderizamos
+ReactDOM.render(jsx, container);
+```
+
+Cuando es anidado, es mucho mas facil, legible y claro.
+
+Vamos a trabajar en `JSX`, ya que es mucho mas facil.
+
+Queda claro que `REACT JS` es `Javascript`, que por medio de `webpack`, `babel` y `create react app`, `jsx` termina siendo `JS`
