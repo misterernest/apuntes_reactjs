@@ -269,3 +269,70 @@ Cuando es anidado, es mucho mas facil, legible y claro.
 Vamos a trabajar en `JSX`, ya que es mucho mas facil.
 
 Queda claro que `REACT JS` es `Javascript`, que por medio de `webpack`, `babel` y `create react app`, `jsx` termina siendo `JS`
+
+## Componentes
+
+Que son los componentes:
+Unidad básica de desarrollo, se puede asemejar con un bloque lego, barras de busqueda, header, footer, aside, etc...
+
+Siendo un poco mas tecnicos, viendo la programación orientada a objetos:
+`COMPONENTES = CLASES`
+`ELEMENTOS = OBJETOS`
+El elemento sale de un componente.
+
+Algo primordial que lo ira dando la experiencia es identificar componentes:
+Para esto hay un par de preguntas que te pueden ayudar:
+
+- ¿Qué elementos se repiten?
+- ¿Que elementos cumplen una función muy especifica?
+
+Si cumple cualquiera de estas dos, son candidatos a COMPONENTE.
+
+Miremos una tienda virtual.
+
+Cada elemento de la tienda, aunque no se repite, siempre es la misma caja con la misma estructura. Osea que este elemento se esta repitiendo, de manera visual o de funcionalidad, maneja foto, precio, cantidad y descripción.
+
+Ahora veamos lo elementos que cumplen un función muy especifia:
+
+- Sirven para encapsular una lógica.
+- Permiten juntar muchos comportamientos y aspectos visuales en un solo lugar.
+
+el buscador de una tienda virtual, es un componente complejo, salen resultado, devuelven peticiones, maneja funciones muy especificas y nuestros componentes van ha hacer lo mismo.
+
+Ahora hagamos nuestro primer componente:
+
+Esta parte no es obligatorias pero son convensiones que ayudan mucho en el momento del mantenimiento y la colaboración en un grupo de desarrollo.
+dentro de la carpeta src, se puede crear una carpeta llamada `components` que es donde viven nuestros componentes.
+
+Dentro de este colocamos el primer componente, es un `batch.js`
+
+En el archivo va haber un codigo tipo react.js de la siguiente manera:
+
+```js
+import React from "react";
+// esta es la clase que hereda de React.Component para volversre un componente
+class Badge extends React.Component {
+  // este es el metodo que todo compoente debe tener
+  render() {
+    return <h1>Badges</h1>;
+  }
+}
+// Esto es lo que permite que nuestro componente sea exportado
+export default Badge;
+```
+
+y lo importamos desde nuestro `index.js`
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+import Badge from "./components/Badge";
+
+const container = document.getElementById("app");
+// Aquí llamamos nuestra importaión y estamos asegurando que lo que llega es un elemento.
+ReactDOM.render(<Badge />, container);
+```
+
+Recomendamos tener el scetch del proyecto para poder realizar el trabajo, facilita el objetivo del proyecto e ir construyendo seguún nuestro mapa.
+
+En este caso solo es practica, no contamos con uno.
